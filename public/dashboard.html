@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Dashboard</title>
+    <link rel="stylesheet" href="index.css"> <!-- Include your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+</head>
+<body>
+    <header>
+        <h1>Expenses Tracking Dashboard</h1>
+            <button class="menu-btn" id="menu-btn">☰ Menu</button>
+            <div class="nav-menu" id="nav-menu">
+                <button class="close-btn" id="close-btn">&times;</button>  
+      
+        <nav id="dashboardNav">
+            <ul>
+                <li><a href="view_expense.html">View Expenses</a></li>
+                <li><a href="add_expense.html">Add Expense</a></li>
+                <li><a href="charts.html">View Charts</a></li>
+                <li><a href="#aboutUs">About Us</a></li>
+                <li></li><button id="logoutButton">Logout</button></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    </header>
+       <!-- Content Area -->
+    <div id="content">
+    <section id="totalExpenses">
+        <h2>Total Expenses</h2>
+        <p id="totalExpensesAmount">ksh0.00</p>
+    </section>
+
+        <!-- Charts Section -->
+        <section id="chartsSection">
+            <h2>Expense Charts</h2>
+
+            <div class="chart-container">
+                <h3>Pie Chart</h3>
+            <canvas id="expensePieChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Bar Graph</h3>
+            <canvas id="expenseBarChart"></canvas>
+        </div>
+
+        <div class="chart-container">
+            <h3>Line Graph</h3>
+            <canvas id="expenseLineChart"></canvas>
+        </div>
+        </section>
+
+       <!-- About Us Section -->
+       <section id="aboutUs">
+        <h2>About Us</h2>
+        <p>We are a team dedicated to helping you track and manage your expenses efficiently. Our goal is to provide you with the tools you need to maintain financial stability and achieve your financial goals.</p>
+    </section>
+</div>
+</div>
+    <!-- Example status modal inclusion -->
+<div id="statusModal" class="modal">
+    <div class="modal-content">
+        <span id="statusMessage" style="color: green;">Action completed successfully.</span>
+        <button id="statusOkButton">OK</button>
+    </div>
+</div>
+<div id="sessionExpiredModal" class="modal">
+    <div class="modal-content">
+        <p>Session expired! Please log in again.</p>
+        <button id="sessionExpiredOkButton">OK</button>
+    </div>
+</div>
+    <!-- Modal for Success Message -->
+    <div id="logoutSuccessModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p id="logoutMessage" style="color: green;">Logged out successfully!</p>
+            <button id="closeModalButton">OK</button>
+        </div>
+    </div>
+<footer>
+    <p>&copy; 2024 Expense Tracker. All Rights Reserved.</p>
+</footer>
+<script src="/js/script.js"></script> <!-- Ensure your script that controls the modal is linked -->
+<script src="/js/logout.js"></script> <!-- Logout script -->
+<script src="/js/totalexpense.js"></script>
+<script src="/js/menu.js"></script>
+</body>
+</html>

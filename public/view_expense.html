@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>View Expenses - Expense Tracker</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+      <header>
+        <h1>View Expenses</h1>
+        <nav>
+            <button id="goBackButton" class="go-back-btn">Go Back</button>
+            <a href="dashboard.html"> Expenses Dashboard</a>
+            <a href="add_expense.html">Add expense</a>
+ 
+        </nav>
+      </header>
+      <main>
+        <button id="view_expensesButton">View Expenses</button>
+        <!-- Expenses Table -->
+        <table id="expensesTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="expensesTableBody">
+    <!-- Expenses will be dynamically inserted here -->
+            </tbody>
+        </table>
+      </main>
+      <!-- Edit Expense Modal -->
+      <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Expense</h2>
+            <form id="editForm">
+                <input type="hidden" id="editExpenseId" name="id">
+                <label for="editExpenseName">Name:</label>
+                <input type="text" id="editExpenseName" name="name">
+                
+                <label for="editExpenseAmount">Amount:</label>
+                <input type="number" id="editExpenseAmount" name="amount">
+    
+                <label for="editExpenseDate">Date:</label>
+                <input type="date" id="editExpenseDate" name="date">
+                
+                <label for="editExpenseCategory">Category:</label>
+                <input type="text" id="editExpenseCategory" name="category">
+    
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+    <!-- Confirm Delete Modal  -->
+    <div id="confirmDeleteModal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Confirm Delete</h2>
+          <p>Are you sure you want to delete this expense?</p>
+          <div class="modal-actions"></div>
+          <button id="confirmDeleteButton" class="btn btn-danger">Yes, Delete</button>
+          <button id="cancelDeleteButton" class="btn btn-secondary">Cancel</button>
+      </div>
+  </div>
+  </div>
+  <!-- Status Message Modal -->
+<div id="statusMessageModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="statusMessage"></p>
+        <button id="statusMessageOkButton">OK</button>
+    </div>
+</div>
+<div id="sessionExpiredModal" class="modal">
+    <div class="modal-content">
+        <p>Session expired! Please log in again.</p>
+        <button id="sessionExpiredOkButton">OK</button>
+    </div>
+</div>
+      <footer>
+        <p>&copy; 2024 Expense Tracker. All Rights Reserved.</p>
+      </footer>
+      <script src="/js/script.js"></script> 
+      <script src="/js/goback.js"></script>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Charts</title>
+    <link rel="stylesheet" href="index.css"> <!-- Include your CSS file -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
+</head>
+<body>
+    <header>
+        <h1>Expense Charts</h1>
+    <!-- Go Back Button -->
+    
+            <nav id="dashboardNav">
+                <ul>
+                    <button id="goBackButton" class="go-back-btn">Go Back</button>
+                    <a href="dashboard.html">Expenses Dashboard</a>
+                    <a href="#aboutUs">About Us</a>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <section id="chartsSection">
+            <h2>Expense Charts</h2>
+            <div class="chart-container">
+                <h3>Pie Chart</h3>
+                <canvas id="expensePieChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Bar Graph</h3>
+                <canvas id="expenseBarChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Line Graph</h3>
+                <canvas id="expenseLineChart"></canvas>
+            </div>
+        </section>
+
+        <section id="aboutUs">
+            <h2>About Us</h2>
+            <p>We are a team dedicated to helping you track and manage your expenses efficiently. Our goal is to provide you with the tools you need to maintain financial stability and achieve your financial goals.</p>
+        </section>
+    </div>
+    <div id="sessionExpiredModal" class="modal">
+        <div class="modal-content">
+            <p>Session expired! Please log in again.</p>
+            <button id="sessionExpiredOkButton">OK</button>
+        </div>
+    </div>
+    <!-- Include modals if necessary -->
+    <footer>
+        <p>&copy; 2024 Expense Tracker. All Rights Reserved.</p>
+    </footer>
+    <script src="/js/script.js"></script> <!-- Include your chart script -->
+    <script src="/js/goback.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - Expense Tracker</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <header>
+            <h1>Login</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="register.html">Register</a>
+            </nav>
+        </header>
+        <main>
+           <form id="loginForm">
+            
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+
+                <!-- Show Password Feature -->
+                <label>
+                    <input type="checkbox" id="showPassword"> Show Password
+                </label>
+
+                <!-- Forgot Password Link -->
+                <p><a href="forgot-password.html">Forgot Password?</a></p>
+
+
+            <button type="submit">Login</button>
+            <p id="authMsg"></p> <!-- Container for success/error messages -->
+        
+         <!-- New message for users who don't have an account -->
+         <p>Don't have an account yet? <a href="register.html">Register here</a>.</p>
+        </form> 
+        </main>
+         <!-- Pop-up modal for status messages -->
+    <div id="statusMessageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="statusMessage"></p>
+            <button id="okButton">OK</button>
+        </div>
+    </div>
+        <footer>
+            <p>&copy; 2024 Expense Tracker. All Rights Reserved.</p>
+        </footer>
+        <script src="/js/login.js"></script> 
+    </body>
+</html>

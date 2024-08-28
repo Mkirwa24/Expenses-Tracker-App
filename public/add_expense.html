@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Expense - Expense Tracker</title>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+      <header>
+        <h1>Add Expense</h1>
+        <nav>
+          <button id="goBackButton" class="go-back-btn">Go Back</button>
+            <a href="view_expense.html">View Expenses</a>
+            <a href="dashboard.html"> Expenses Dashboard</a>
+        </nav>
+      </header>
+      <main>
+        <form id="Form">
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name">
+
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" required>
+
+            <label for="amount">Amount</label>
+            <input type="number" id="amount" name="amount" required>
+            
+
+            <button type="submit">Add Expense</button>
+        </form>
+      </main>
+      <!-- Status Message Modal -->
+      <div id="statusMessageModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="statusMessage"></p>
+            <button id="statusMessageOkButton">OK</button>
+        </div>
+    </div>
+    <div id="sessionExpiredModal" class="modal">
+      <div class="modal-content">
+          <p>Session expired! Please log in again.</p>
+          <button id="sessionExpiredOkButton">OK</button>
+      </div>
+  </div>
+      <footer>
+        <p>&copy; 2024 Expense Tracker. All Rights Reserved.</p>
+      </footer>
+      <script src="/js/script.js"></script>
+      <script src="/js/goback.js"></script>
+    </body>
+</html>
