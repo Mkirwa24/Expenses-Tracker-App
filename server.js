@@ -26,7 +26,7 @@ app.use(cors());
 const frontendURL = 'https://expenses-trackerr-application.netlify.app/'; // Replace with your actual front-end URL
 app.use(cors({
     origin: frontendURL,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],   // Specify allowed HTTP methods
     credentials: true // Allow credentials if needed (cookies, etc.)
 }));
 
