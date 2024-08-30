@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('http://localhost:5200/add_expense', {
+                const response = await fetch('https://expense-tracker-application-5b92.onrender.com/add_expense', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ setInterval(refreshAccessToken, 30 * 60 * 1000); // 30 minutes interval
     // Fetch and display the list of expenses
     async function fetchAndDisplayExpenses() {
         try {
-            const response = await fetch('http://localhost:5200/view_expense', {
+            const response = await fetch('https://expense-tracker-application-5b92.onrender.com/view_expense', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -155,7 +155,7 @@ async function handleTokenExpiration() {
 // Function to refresh access token
 async function refreshAccessToken() {
     try {
-        const response = await fetch('http://localhost:5200/refreshToken', {
+        const response = await fetch('https://expense-tracker-application-5b92.onrender.com/refreshToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -406,7 +406,7 @@ window.addEventListener('resize', function(){
  // Function to open the edit modal
   const openEditModal = async(expenseId) => {
     try {
-        const response = await fetch(`http://localhost:5200/view_expense/${expenseId}`, {
+        const response = await fetch(`https://expense-tracker-application-5b92.onrender.com/view_expense/${expenseId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -441,7 +441,7 @@ document.getElementById('editForm').addEventListener('submit', async function(ev
     const category = document.getElementById('editExpenseCategory').value;
 
     try {
-        const response = await fetch(`http://localhost:5200/edit_expense/${id}`, {
+        const response = await fetch(`https://expense-tracker-application-5b92.onrender.com/edit_expense/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

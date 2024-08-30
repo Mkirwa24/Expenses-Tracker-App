@@ -21,7 +21,16 @@ const resetPasswordRoutes = require('./routes/reset-password')
 
 dotenv.config();
 app.use(express.json());
-app.use(cors());
+// Update this line to configure CORS
+const frontendURL = 'https://expenses-tracker-application.onrender.com'; // Replace with your actual front-end URL
+app.use(cors({
+    origin: frontendURL,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed HTTP methods
+    credentials: true // Allow credentials if needed (cookies, etc.)
+}));
+
+
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public'))); // Assuming 'public' is the folder where your HTML file is located
 app.use(bodyParser.json());

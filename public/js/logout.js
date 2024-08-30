@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const token = localStorage.getItem('token');
                 console.log('Logout button clicked, token:', token);
 
-                const response = await fetch('http://localhost:5200/logout', { // Ensure correct URL and port
+                const response = await fetch('https://expense-tracker-application-5b92.onrender.com/logout', { // Ensure correct URL and port
                     method: 'POST',
                     headers: {
                         'Authorization': `Bearer ${token}`,

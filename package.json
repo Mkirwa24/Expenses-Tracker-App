@@ -1,7 +1,7 @@
 {
   "name": "expenses-tracker-application",
   "version": "1.0.0",
-  "description": "",
+  "description": "The Expense Tracker Application is a user-friendly web-based tool that helps individuals keep track of their personal expenses. The application provides a simple interface to log, monitor, and analyze expenses, making it easier for users to manage their money efficiently. With intuitive dashboard features, users can quickly see their total expenses, view detailed charts, and manage individual transactions.",
   "main": "db.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const token = tokenField.value;
 
         try {
-            const response = await fetch('http://localhost:5200/reset-password', {
+            const response = await fetch('https://expense-tracker-application-5b92.onrender.com/reset-password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
