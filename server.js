@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const authenticateToken = require('./middleware/authenticateToken');
-const pool = require('./db'); // Import the database connection
+const db = require('./db'); // Import the database connection
 const addExpenseRoute = require('./routes/add_expense');
 const viewExpenseRoutes = require('./routes/view_expense');
 const editExpenseRoutes = require('./routes/edit_expense'); // Import edit expense routes
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 // Create database schema
-pool.query('CREATE DATABASE IF NOT EXISTS expensesApp_tracker', (err) => {
+db.query('CREATE DATABASE IF NOT EXISTS expensesApp_tracker', (err) => {
     if (err) {
         console.error('Error creating database:', err);
         return;
@@ -47,7 +47,7 @@ pool.query('CREATE DATABASE IF NOT EXISTS expensesApp_tracker', (err) => {
     console.log('Database expensesApp_tracker created/checked');
 
     // Select our database schema
-    pool.changeUser({ database: 'expensesApp_tracker' }, (err) => {
+    db.changeUser({ database: 'expensesApp_tracker' }, (err) => {
         if (err) {
             console.error('Error changing to expensesApp_tracker database:', err);
             return;
