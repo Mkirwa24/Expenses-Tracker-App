@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         try {
-            const response = await fetch('https://expense-tracker-application-5b92.onrender.com/api/register', {
+            const response = await fetch('https://expenses-trackerrr-application.onrender.com//api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
