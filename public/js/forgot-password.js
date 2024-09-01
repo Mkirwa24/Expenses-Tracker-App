@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
 
         try {
-            const response = await fetch('https://expenses-trackerrr-application.onrender.com//forgot-password', {
+            const response = await fetch('https://expenses-trackerrr-application.onrender.com/forgot-password', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
