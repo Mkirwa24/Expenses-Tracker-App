@@ -8,7 +8,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const authenticateToken = require('./middleware/authenticateToken');
-const db = require('./db'); // Import the database connection
+const db = require('./db'); // Import the database using pooled connection
 const addExpenseRoute = require('./routes/add_expense');
 const viewExpenseRoutes = require('./routes/view_expense');
 const editExpenseRoutes = require('./routes/edit_expense'); // Import edit expense routes
@@ -46,13 +46,7 @@ db.query('CREATE DATABASE IF NOT EXISTS expensesApp_tracker', (err) => {
     }
     console.log('Database expensesApp_tracker created/checked');
 
-    // Select our database schema
-    db.changeUser({ database: 'expensesApp_tracker' }, (err) => {
-        if (err) {
-            console.error('Error changing to expensesApp_tracker database:', err);
-            return;
-        }
-        console.log('Changed to expensesApp_tracker');
+   
 
         // Create Users table
         const createUsersTable = `
@@ -92,7 +86,7 @@ db.query('CREATE DATABASE IF NOT EXISTS expensesApp_tracker', (err) => {
         });
 
     });
-});
+
 
 // User registration route
 app.post('/api/register', async (req, res) => {
