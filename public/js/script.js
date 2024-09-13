@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch and display budget and chart data when the DOM is fully loaded
-    fetchBudgetData();
     fetchChartData();
 
     // Add an event listener to the view expenses button
@@ -80,7 +79,7 @@ setInterval(refreshAccessToken, 30 * 60 * 1000); // 30 minutes interval
     // Add event listeners for dashboard navigation
     const addExpenseNav = document.getElementById('addExpenseNav');
     const chartsNav = document.getElementById('chartsNav');
-    const budgetsNav = document.getElementById('budgetsNav');
+    
 
     if (addExpenseNav) {
         addExpenseNav.addEventListener('click', () => {
@@ -94,11 +93,7 @@ setInterval(refreshAccessToken, 30 * 60 * 1000); // 30 minutes interval
         });
     }
 
-    if (budgetsNav) {
-        budgetsNav.addEventListener('click', () => {
-            window.location.href = 'budgets.html'; // Navigate to budgets page
-        });
-    }
+   
 
     // Fetch and display the list of expenses
     async function fetchAndDisplayExpenses() {
@@ -159,7 +154,7 @@ let lastRefreshTime = Date.now();
 async function refreshAccessToken() {
     try {
         console.log(`Attempting to refresh token at ${new Date().toLocaleTimeString()}`);
-        const response = await fetch('http://localhost:4100/refreshToken', {
+        const response = await fetch('https://expenses-trackerrr-application.onrender.com/refreshToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -218,99 +213,6 @@ function showSessionExpiredModal() {
         console.log('Redirecting to login page.');
     });
 }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        const budgetForm = document.getElementById('budgetForm');
-        
-        if (budgetForm) {
-            budgetForm.addEventListener('submit', async function(event) {
-                event.preventDefault();
-    
-                const category = document.getElementById('category').value;
-                const amount = parseFloat(document.getElementById('amount').value);
-    
-                if (!category || isNaN(amount) || amount <= 0) {
-                    alert('Please enter a valid category and amount.');
-                    return;
-                }
-    
-                try {
-                    const token = localStorage.getItem('token');
-                    console.log('Form data:', { category, amount }); // Debugging
-                    const response = await fetch('/budget/add', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        },
-                        body: JSON.stringify({ category, amount })
-                    });
-    
-                    if (!response.ok) {
-                        throw new Error('Failed to add/update budget');
-                    }
-    
-                    const result = await response.json();
-                    console.log('Server response:', result); // Debugging
-                    alert(result.message);
-    
-                    // Refresh the budget overview
-                    await fetchBudgetData(); // Ensure this is awaited
-                    budgetForm.reset();
-                } catch (error) {
-                    console.error('Error handling budget form submission:', error);
-                    alert('An error occurred while adding/updating the budget.');
-                }
-            });
-        } else {
-            console.error('Budget form element not found');
-        }
-    });
-    
-    async function fetchBudgetData() {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await fetch('/budget/view', {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to fetch budget data');
-            }
-    
-            const data = await response.json();
-            console.log('Fetched budget data:', data); // Debugging
-    
-            // Update the DOM elements
-            if (data && typeof data === 'object' && 
-                data.totalBudget !== undefined && 
-                data.remainingBudget !== undefined && 
-                data.spentAmount !== undefined) {
-    
-                // Convert string values to numbers
-                const totalBudget = parseFloat(data.totalBudget);
-                const remainingBudget = parseFloat(data.remainingBudget);
-                const spentAmount = parseFloat(data.spentAmount);
-    
-                // Update the DOM with formatted numbers
-                document.getElementById('totalBudget').textContent = totalBudget.toFixed(2);
-                document.getElementById('remainingBudget').textContent = remainingBudget.toFixed(2);
-                document.getElementById('spentAmount').textContent = spentAmount.toFixed(2);
-    
-                // Render categories
-                const categories = (data.categories || []).map(category => `
-                    <p>${category.name}:KSH ${parseFloat(category.amount).toFixed(2)}</p>
-                `).join('');
-                document.getElementById('budgetCategories').innerHTML = categories;
-            } else {
-                console.error('Unexpected data structure:', data);
-            }
-        } catch (error) {
-            console.error('Error fetching budget data:', error);
-        }
-    }
 
  
  // function to fetch and display chart data
@@ -320,7 +222,7 @@ async function fetchChartData() {
         const token = localStorage.getItem('token');
 
         // Fetch chart data from the server with authorization header
-        const responseCategory = await fetch('/charts/expenses-by-category', {
+        const responseCategory = await fetch('https://expenses-trackerrr-application.onrender.com/charts/expenses-by-category', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -354,7 +256,7 @@ async function fetchChartData() {
         });
 
         // Fetch total expenses by month
-        const responseMonth = await fetch('/charts/expenses-by-month', {
+        const responseMonth = await fetch('https://expenses-trackerrr-application.onrender.com/charts/expenses-by-month', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
