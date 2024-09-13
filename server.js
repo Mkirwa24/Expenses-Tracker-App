@@ -135,6 +135,8 @@ app.use('/reset-password', resetPasswordRoutes);
 
 
 // Start the server
-app.listen(5200, () => {
-    console.log('Server is running on port 5200');
+// Use Render's provided port or default to 5200
+const PORT = process.env.PORT || 5200;  
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
