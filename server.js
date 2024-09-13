@@ -39,7 +39,44 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-      
+     // Create Users table
+     const createUsersTable = `
+     CREATE TABLE IF NOT EXISTS users (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         email VARCHAR(100) NOT NULL UNIQUE,
+         username VARCHAR(255) NOT NULL UNIQUE,
+         password VARCHAR(255) NOT NULL
+     )
+ `;
+ db.query(createUsersTable, (err) => {
+     if (err) {
+         console.error('Error creating Users table:', err);
+         return;
+     }
+     console.log('Users table created or already exists.');
+ });
+
+ // Create Expenses table
+ const createExpensesTable = `
+     CREATE TABLE IF NOT EXISTS expenses (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         user_id INT,
+         name VARCHAR(255) NOT NULL,
+         amount DECIMAL(10, 2) NOT NULL,
+         date DATE NOT NULL,
+         category VARCHAR(255) NOT NULL,
+         FOREIGN KEY (user_id) REFERENCES users(id)
+     )
+ `;
+ db.query(createExpensesTable, (err) => {
+     if (err) {
+         console.error('Error creating Expenses table:', err);
+         return;
+     }
+     console.log('Expenses table created or already exists.');
+ });
+
+ 
 
 // User registration route
 app.post('/api/register', async (req, res) => {

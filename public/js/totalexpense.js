@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('/expenses/add', {
+            const response = await fetch('https://expenses-trackerrr-application.onrender.com/expenses/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchTotalExpenses() {
         try {
             const token = localStorage.getItem('token');
-            const response = await fetch('/totalexpenses', {
+            const response = await fetch('https://expenses-trackerrr-application.onrender.com/totalexpenses', {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
