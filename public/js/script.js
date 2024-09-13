@@ -153,9 +153,13 @@ async function handleTokenExpiration() {
 }
 
 // Function to refresh access token
+let lastRefreshTime = Date.now();
+
+// Update the function to include time logging
 async function refreshAccessToken() {
     try {
-        const response = await fetch('https://expenses-trackerrr-application.onrender.com/refreshToken', {
+        console.log(`Attempting to refresh token at ${new Date().toLocaleTimeString()}`);
+        const response = await fetch('http://localhost:4100/refreshToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -167,6 +171,8 @@ async function refreshAccessToken() {
 
         const { accessToken } = await response.json();
         localStorage.setItem('token', accessToken);
+        lastRefreshTime = Date.now(); // Update last refresh time
+        console.log('Token refreshed successfully at', new Date(lastRefreshTime).toLocaleTimeString());
     } catch (error) {
         console.error('Error refreshing access token:', error);
         localStorage.removeItem('token');
@@ -175,33 +181,44 @@ async function refreshAccessToken() {
     }
 }
 
+function startTokenRefresh() {
+    setTimeout(async () => {
+        await refreshAccessToken();
+        startTokenRefresh(); // Schedule next refresh
+    }, 30 * 60 * 1000); // 30 minutes
+}
+
+startTokenRefresh();
+
 // Function to show session expired modal and wait for user action
 function showSessionExpiredModal() {
     return new Promise((resolve) => {
         const sessionExpiredModal = document.getElementById('sessionExpiredModal');
         if (sessionExpiredModal) {
             sessionExpiredModal.style.display = 'block';
+            console.log('Session expired modal displayed.');
 
             const sessionExpiredOkButton = document.getElementById('sessionExpiredOkButton');
             if (sessionExpiredOkButton) {
                 sessionExpiredOkButton.onclick = () => {
                     sessionExpiredModal.style.display = 'none';
+                    console.log('Session expired modal OK button clicked.');
                     resolve();
                 };
             } else {
                 console.error('Session expired OK button not found.');
-                resolve(); // Proceed if button not found
+                resolve();    // Proceed if button not found
             }
         } else {
             console.error('Session expired modal not found.');
-            resolve(); // Proceed if modal not found
+            resolve();     // Proceed if modal not found
         }
     }).then(() => {
         window.location.href = 'login.html';
+        console.log('Redirecting to login page.');
     });
 }
-
-  
+    
     document.addEventListener('DOMContentLoaded', function() {
         const budgetForm = document.getElementById('budgetForm');
         
