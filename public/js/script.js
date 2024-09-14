@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Fetch and display budget and chart data when the DOM is fully loaded
+    // Fetch and display chart data when the DOM is fully loaded
     fetchChartData();
 
     // Add an event listener to the view expenses button
