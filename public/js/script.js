@@ -178,7 +178,7 @@ async function refreshAccessToken() {
             console.error('Failed to refresh token. Server response:', errorText);
             throw new Error('Failed to refresh token');
         }
-
+        
         const { accessToken } = await response.json();
         localStorage.setItem('token', accessToken);
         lastRefreshTime = Date.now(); // Update last refresh time
@@ -375,13 +375,9 @@ window.addEventListener('resize', function(){
 }
 
 // Function to handle form submission
-document.addEventListener('DOMContentLoaded', function() {
-    // Ensure the form exists before adding event listeners
-    const editForm = document.getElementById('editForm');
-
-    if (editForm) {
-        editForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent default form submission
+document.getElementById('editForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
+    
     const id = document.getElementById('editExpenseId').value;
     const name = document.getElementById('editExpenseName').value;
     const amount = document.getElementById('editExpenseAmount').value;
@@ -409,10 +405,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (error) {
         console.error('Error updating expense:', error);
     }
-});
-} else {
-    console.error('Element with id "editForm" not found.');
-}
 });
 
 // Close modals when clicking the close button
