@@ -2,10 +2,10 @@ const nodemailer = require('nodemailer');
 require('dotenv').config(); // Load environment variables
 
 const transporter = nodemailer.createTransport({
-    service: 'Gmail', // or other email service
+    service: 'hotmail', // Use 'hotmail' for Outlook accounts
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: process.env.EMAIL_USER, // Use the email from .env file
+        pass: process.env.EMAIL_PASS  // Use the app password from .env file
     },
     tls: {
         rejectUnauthorized: false // Accept self-signed certificates
@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendPasswordResetEmail = (to, token) => {
-    const resetLink = `http://localhost:4100/reset-password?token=${token}`;
+    const resetLink = `https://expenses-trackerrr-application.onrender.com/reset-password?token=${token}`;
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: to,
