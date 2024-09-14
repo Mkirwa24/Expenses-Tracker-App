@@ -223,8 +223,10 @@ async function fetchChartData() {
 
         // Fetch chart data from the server with authorization header
         const responseCategory = await fetch('https://expenses-tracking-application1.onrender.com/charts/expenses-by-category', {
+            method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
             }
         });
 
@@ -257,6 +259,7 @@ async function fetchChartData() {
 
         // Fetch total expenses by month
         const responseMonth = await fetch('https://expenses-tracking-application1.onrender.com/charts/expenses-by-month', {
+            method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             }
