@@ -151,9 +151,20 @@ async function handleTokenExpiration() {
 let lastRefreshTime = Date.now();
 
 // Update the function to include time logging
+let retryAttempts = 0;
+const maxRetries = 2;
+
 async function refreshAccessToken() {
     try {
         console.log(`Attempting to refresh token at ${new Date().toLocaleTimeString()}`);
+        const refreshToken = localStorage.getItem('refreshToken');
+
+        if (!refreshToken) {
+            console.error('No refresh token available');
+            await showSessionExpiredModal();
+            return;
+        }
+
         const response = await fetch('https://expenses-tracking-application1.onrender.com/refreshToken', {
             method: 'POST',
             headers: {
@@ -162,18 +173,29 @@ async function refreshAccessToken() {
             body: JSON.stringify({ refreshToken: localStorage.getItem('refreshToken') })
         });
 
-        if (!response.ok) throw new Error('Failed to refresh token');
-
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Failed to refresh token. Server response:', errorText);
+            throw new Error('Failed to refresh token');
+        }
+        
         const { accessToken } = await response.json();
         localStorage.setItem('token', accessToken);
         lastRefreshTime = Date.now(); // Update last refresh time
         console.log('Token refreshed successfully at', new Date(lastRefreshTime).toLocaleTimeString());
     } catch (error) {
         console.error('Error refreshing access token:', error);
+        
+        if (retryAttempts < maxRetries) {
+            retryAttempts++;
+            console.log(`Retry attempt ${retryAttempts}`);
+            await refreshAccessToken();
+        } else {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
         await showSessionExpiredModal();
     }
+}
 }
 
 function startTokenRefresh() {
