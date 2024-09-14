@@ -1,47 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+     // Fetch and display total expenses when the DOM is loaded
     fetchTotalExpenses();
 
-    document.getElementById('addExpenseForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
-
-        const category = document.getElementById('category').value;
-        const amount = parseFloat(document.getElementById('amount').value);
-
-        if (!category || isNaN(amount) || amount <= 0) {
-            alert('Please enter valid category and amount.');
-            return;
-        }
-
-        try {
-            const token = localStorage.getItem('token');
-            const response = await fetch('https://expenses-tracking-application1.onrender.com/expenses/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ category, amount })
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to add expense');
-            }
-
-            const result = await response.json();
-            alert(result.message);
-
-            // Ensure `result.totalExpenses` exists or fetch again
-            if (result.totalExpenses !== undefined) {
-                updateTotalExpenses(result.totalExpenses);
-            } else {
-                // Fallback to re-fetch total expenses
-                fetchTotalExpenses();
-            }
-        } catch (error) {
-            console.error('Error adding expense:', error);
-        }
-    });
-
+// Function to fetch total expenses from the server
     async function fetchTotalExpenses() {
         try {
             const token = localStorage.getItem('token');
