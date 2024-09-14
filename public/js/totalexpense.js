@@ -6,9 +6,15 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchTotalExpenses() {
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                throw new Error('No token found. Please log in.');
+            }
+
             const response = await fetch('https://expenses-tracking-application1.onrender.com/totalexpenses', {
+               method:'GET', 
                 headers: {
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             });
 
@@ -24,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+// Function to update the total expenses displayed on the page
     function updateTotalExpenses(totalExpenses) {
         const totalExpensesElement = document.getElementById('totalExpensesAmount');
         if (totalExpensesElement) {
