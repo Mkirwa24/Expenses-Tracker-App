@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch('https://expenses-trackerrr-application.onrender.com/add_expense', {
+                const response = await fetch('https://expenses-tracking-application1.onrender.com/add_expense', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ setInterval(refreshAccessToken, 30 * 60 * 1000); // 30 minutes interval
     // Fetch and display the list of expenses
     async function fetchAndDisplayExpenses() {
         try {
-            const response = await fetch('https://expenses-trackerrr-application.onrender.com/view_expense', {
+            const response = await fetch('https://expenses-tracking-application1.onrender.com/view_expense', {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -154,7 +154,7 @@ let lastRefreshTime = Date.now();
 async function refreshAccessToken() {
     try {
         console.log(`Attempting to refresh token at ${new Date().toLocaleTimeString()}`);
-        const response = await fetch('https://expenses-trackerrr-application.onrender.com/refreshToken', {
+        const response = await fetch('https://expenses-tracking-application1.onrender.com/refreshToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -222,7 +222,7 @@ async function fetchChartData() {
         const token = localStorage.getItem('token');
 
         // Fetch chart data from the server with authorization header
-        const responseCategory = await fetch('https://expenses-trackerrr-application.onrender.com/charts/expenses-by-category', {
+        const responseCategory = await fetch('https://expenses-tracking-application1.onrender.com/charts/expenses-by-category', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -256,7 +256,7 @@ async function fetchChartData() {
         });
 
         // Fetch total expenses by month
-        const responseMonth = await fetch('https://expenses-trackerrr-application.onrender.com/charts/expenses-by-month', {
+        const responseMonth = await fetch('https://expenses-tracking-application1.onrender.com/charts/expenses-by-month', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -325,7 +325,7 @@ window.addEventListener('resize', function(){
  // Function to open the edit modal
   const openEditModal = async(expenseId) => {
     try {
-        const response = await fetch(`https://expenses-trackerrr-application.onrender.com/view_expense/${expenseId}`, {
+        const response = await fetch(`https://expenses-tracking-application1.onrender.com/view_expense/${expenseId}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -360,7 +360,7 @@ document.getElementById('editForm').addEventListener('submit', async function(ev
     const category = document.getElementById('editExpenseCategory').value;
 
     try {
-        const response = await fetch(`https://expenses-trackerrr-application.onrender.com/edit_expense/${id}`, {
+        const response = await fetch(`https://expenses-tracking-application1.onrender.com/edit_expense/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -406,7 +406,7 @@ document.getElementById('confirmDeleteButton').addEventListener('click', async f
     const expenseId = this.dataset.expenseId;
     
     try {
-        const response = await fetch(`/delete_expense/${expenseId}`, {
+        const response = await fetch(`https://expenses-tracking-application1.onrender.com/delete_expense/${expenseId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
