@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetchTotalExpenses();
+    // Ensure form exists
+    const addExpenseForm = document.getElementById('addExpenseForm');
+    
+    if (addExpenseForm) {
+        addExpenseForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-    document.getElementById('addExpenseForm').addEventListener('submit', async function(event) {
-        event.preventDefault();
 
         const category = document.getElementById('category').value;
         const amount = parseFloat(document.getElementById('amount').value);
@@ -14,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                alert('You are not logged in');
+                return;
+            }
+
             const response = await fetch('https://expenses-tracking-application1.onrender.com/expenses/add', {
                 method: 'POST',
                 headers: {
@@ -41,10 +49,20 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error adding expense:', error);
         }
     });
+} else {
+    console.error('Element with id "addExpenseForm" not found');
+}
+
+fetchTotalExpenses();
 
     async function fetchTotalExpenses() {
         try {
             const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No token found in localStorage');
+                return;
+            }
+            
             const response = await fetch('https://expenses-tracking-application1.onrender.com/totalexpenses', {
                 headers: {
                     'Authorization': `Bearer ${token}`
