@@ -381,9 +381,12 @@ window.addEventListener('resize', function() {
 }
 
 // Function to handle form submission
-document.getElementById('editForm').addEventListener('submit', async function(event) {
-    event.preventDefault(); // Prevent default form submission
-    
+document.addEventListener('DOMContentLoaded', () => {
+    const editForm = document.getElementById('editForm');
+    if (editForm) {
+        editForm.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent default form submission
+
     const id = document.getElementById('editExpenseId').value;
     const name = document.getElementById('editExpenseName').value;
     const amount = document.getElementById('editExpenseAmount').value;
@@ -411,6 +414,10 @@ document.getElementById('editForm').addEventListener('submit', async function(ev
     } catch (error) {
         console.error('Error updating expense:', error);
     }
+});
+} else {
+    console.error('Edit form element not found.');
+}
 });
 
 // Close modals when clicking the close button
