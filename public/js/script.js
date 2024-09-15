@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showSessionExpiredModal(); // Show modal if flag is set
     }
 });
+
 // Function to show session expired modal and wait for user action
 function showSessionExpiredModal() {
     // Set flag to show modal
@@ -233,7 +234,11 @@ function showSessionExpiredModal() {
                 sessionExpiredOkButton.onclick = () => {
                     sessionExpiredModal.style.display = 'none';
                     console.log('Session expired modal OK button clicked.');
-                    resolve();
+                    
+                     // Clear the modal flag in localStorage
+                     localStorage.removeItem('showSessionExpiredModal');
+                     resolve();
+                                                           
                 };
             } else {
                 console.error('Session expired OK button not found.');
@@ -248,6 +253,7 @@ function showSessionExpiredModal() {
         console.log('Redirecting to login page.');
     });
 }
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchChartData();
