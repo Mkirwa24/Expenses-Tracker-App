@@ -212,15 +212,22 @@ function startTokenRefresh() {
 startTokenRefresh();
 
 document.addEventListener('DOMContentLoaded', () => {
-    const showModalFlag = localStorage.getItem('showSessionExpiredModal');
-    
-    // Show modal after a 2-second delay on page refresh
-    setTimeout(() => {
-        showSessionExpiredModal();       // This will show the modal after 2 seconds
-    }, 2000);
+    const token = localStorage.getItem('token');
+    const refreshToken = localStorage.getItem('refreshToken');
 
-    if (showModalFlag === 'true') {
-        showSessionExpiredModal();      // Show modal if flag is set
+    // Check if token is missing or expired, then show the modal after 2 seconds
+    if (!token || !refreshToken) {
+        setTimeout(() => {
+            showSessionExpiredModal(); // Show session expired modal after 2 seconds
+        }, 2000);
+    } else {
+        // Check the flag in localStorage for session expiration
+        const showModalFlag = localStorage.getItem('showSessionExpiredModal');
+        if (showModalFlag === 'true') {
+            setTimeout(() => {
+                showSessionExpiredModal(); // Show modal if the flag is set
+            }, 2000);
+        }
     }
 });
 
