@@ -158,6 +158,18 @@ let lastRefreshTime = Date.now();
 let retryAttempts = 0;
 const maxRetries = 2;
 
+// Function to check if token has expired
+function isTokenExpired() {
+    const token = localStorage.getItem('token');
+    // Assuming the token has an 'exp' field with expiration timestamp
+    if (!token) {
+        return true;
+    }
+    const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+    const now = Math.floor(Date.now() / 1000);
+    return tokenPayload.exp <= now;
+}
+
 async function refreshAccessToken() {
     try {
         console.log(`Attempting to refresh token at ${new Date().toLocaleTimeString()}`);
@@ -212,24 +224,21 @@ function startTokenRefresh() {
 startTokenRefresh();
 
 document.addEventListener('DOMContentLoaded', () => {
-    const token = localStorage.getItem('token');
-    const refreshToken = localStorage.getItem('refreshToken');
+    const showModalFlag = localStorage.getItem('showSessionExpiredModal');
 
-    // Check if token is missing or expired, then show the modal after 2 seconds
-    if (!token || !refreshToken) {
-        setTimeout(() => {
-            showSessionExpiredModal(); // Show session expired modal after 2 seconds
-        }, 2000);
-    } else {
-        // Check the flag in localStorage for session expiration
-        const showModalFlag = localStorage.getItem('showSessionExpiredModal');
-        if (showModalFlag === 'true') {
-            setTimeout(() => {
-                showSessionExpiredModal(); // Show modal if the flag is set
-            }, 2000);
-        }
+    // Check token expiration immediately on page load
+    if (isTokenExpired()) {
+        showSessionExpiredModal();      // Show modal if the token is already expired
+    } else if (showModalFlag === 'true') {
+        showSessionExpiredModal();      // Show modal if flag is set
     }
+
+    // Optionally, still show modal after 2 seconds if needed for other cases
+    setTimeout(() => {
+        showSessionExpiredModal();
+    }, 2000);
 });
+
 
 // Function to show session expired modal and wait for user action
 function showSessionExpiredModal() {
