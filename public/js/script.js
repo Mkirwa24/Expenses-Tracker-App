@@ -158,18 +158,6 @@ let lastRefreshTime = Date.now();
 let retryAttempts = 0;
 const maxRetries = 2;
 
-// Function to check if token has expired
-function isTokenExpired() {
-    const token = localStorage.getItem('token');
-    // Assuming the token has an 'exp' field with expiration timestamp
-    if (!token) {
-        return true;
-    }
-    const tokenPayload = JSON.parse(atob(token.split('.')[1]));
-    const now = Math.floor(Date.now() / 1000);
-    return tokenPayload.exp <= now;
-}
-
 async function refreshAccessToken() {
     try {
         console.log(`Attempting to refresh token at ${new Date().toLocaleTimeString()}`);
