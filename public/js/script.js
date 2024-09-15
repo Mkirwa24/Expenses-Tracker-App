@@ -371,7 +371,12 @@ window.addEventListener('resize', function() {
         document.getElementById('editExpenseId').value = expense.id;
         document.getElementById('editExpenseName').value = expense.name;
         document.getElementById('editExpenseAmount').value = expense.amount;
-        document.getElementById('editExpenseDate').value = expense.date;
+        
+        
+        // Convert date to yyyy-MM-dd format
+        const expenseDate = new Date(expense.date).toISOString().split('T')[0];
+        document.getElementById('editExpenseDate').value = expenseDate;
+
         document.getElementById('editExpenseCategory').value = expense.category;
 
         document.getElementById('editModal').style.display = 'block';
