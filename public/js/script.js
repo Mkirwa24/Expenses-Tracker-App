@@ -214,12 +214,13 @@ startTokenRefresh();
 document.addEventListener('DOMContentLoaded', () => {
     const showModalFlag = localStorage.getItem('showSessionExpiredModal');
     
-    // Show modal immediately after page refresh
-    // This will show the modal immediately
-    showSessionExpiredModal(); 
+    // Show modal after a 2-second delay on page refresh
+    setTimeout(() => {
+        showSessionExpiredModal();       // This will show the modal after 2 seconds
+    }, 2000);
 
     if (showModalFlag === 'true') {
-        showSessionExpiredModal(); // Show modal if flag is set
+        showSessionExpiredModal();      // Show modal if flag is set
     }
 });
 
