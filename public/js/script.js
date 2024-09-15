@@ -368,17 +368,12 @@ window.addEventListener('resize', function() {
         }
 
         const expense = await response.json();
-
-        // Format the date to yyyy-MM-dd
-        const formattedDate = new Date(expense.date).toISOString().split('T')[0];
-
         document.getElementById('editExpenseId').value = expense.id;
         document.getElementById('editExpenseName').value = expense.name;
         document.getElementById('editExpenseAmount').value = expense.amount;
-        document.getElementById('editExpenseDate').value = formattedDate;
+        document.getElementById('editExpenseDate').value = expense.date;
         document.getElementById('editExpenseCategory').value = expense.category;
 
-        // Show the edit modal
         document.getElementById('editModal').style.display = 'block';
     } catch (error) {
         console.error('Error fetching expense for edit:', error);
@@ -386,12 +381,9 @@ window.addEventListener('resize', function() {
 }
 
 // Function to handle form submission
-document.addEventListener('DOMContentLoaded', () => {
-    const editForm = document.getElementById('editForm');
-    if (editForm) {
-        editForm.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent default form submission
-
+document.getElementById('editForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Prevent default form submission
+    
     const id = document.getElementById('editExpenseId').value;
     const name = document.getElementById('editExpenseName').value;
     const amount = document.getElementById('editExpenseAmount').value;
@@ -420,10 +412,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error updating expense:', error);
     }
 });
-} else {
-    console.error('Edit form element not found.');
-}
-});
 
 // Close modals when clicking the close button
 document.querySelectorAll('.close').forEach(function(closeBtn) {
@@ -431,7 +419,6 @@ document.querySelectorAll('.close').forEach(function(closeBtn) {
         closeBtn.closest('.modal').style.display = 'none';
     });
 });
-
 document.getElementById('statusMessageOkButton').addEventListener('click', function() {
     document.getElementById('statusMessageModal').style.display = 'none';
 });
