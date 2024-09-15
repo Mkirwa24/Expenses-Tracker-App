@@ -213,6 +213,11 @@ startTokenRefresh();
 
 document.addEventListener('DOMContentLoaded', () => {
     const showModalFlag = localStorage.getItem('showSessionExpiredModal');
+    
+    // Show modal immediately after page refresh
+    // This will show the modal immediately
+    showSessionExpiredModal(); 
+
     if (showModalFlag === 'true') {
         showSessionExpiredModal(); // Show modal if flag is set
     }
@@ -235,9 +240,9 @@ function showSessionExpiredModal() {
                     sessionExpiredModal.style.display = 'none';
                     console.log('Session expired modal OK button clicked.');
                     
-                     // Clear the modal flag in localStorage
-                     localStorage.removeItem('showSessionExpiredModal');
-                     resolve();
+                     // Clear the modal flag in localStorage only when OK button is clicked
+                    localStorage.removeItem('showSessionExpiredModal');
+                    resolve();
                                                            
                 };
             } else {
