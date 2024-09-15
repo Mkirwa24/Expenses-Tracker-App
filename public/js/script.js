@@ -211,8 +211,17 @@ function startTokenRefresh() {
 
 startTokenRefresh();
 
+document.addEventListener('DOMContentLoaded', () => {
+    const showModalFlag = localStorage.getItem('showSessionExpiredModal');
+    if (showModalFlag === 'true') {
+        showSessionExpiredModal(); // Show modal if flag is set
+    }
+});
 // Function to show session expired modal and wait for user action
 function showSessionExpiredModal() {
+    // Set flag to show modal
+    localStorage.setItem('showSessionExpiredModal', 'true'); 
+
     return new Promise((resolve) => {
         const sessionExpiredModal = document.getElementById('sessionExpiredModal');
         if (sessionExpiredModal) {
