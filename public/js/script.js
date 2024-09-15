@@ -93,7 +93,11 @@ setInterval(refreshAccessToken, 30 * 60 * 1000); // 30 minutes interval
         });
     }
 
-   
+   // Function to format date as yyyy-MM-dd
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toISOString().split('T')[0]; // Format to yyyy-MM-dd
+};
 
     // Fetch and display the list of expenses
     async function fetchAndDisplayExpenses() {
@@ -124,7 +128,7 @@ setInterval(refreshAccessToken, 30 * 60 * 1000); // 30 minutes interval
                                 <td>${expense.name}</td>
                                 <td>${expense.category}</td>
                                 <td>KSh ${parseFloat(expense.amount).toFixed(2)}</td>
-                                <td>${expense.date}</td>
+                                <td>${formatDate(expense.date)}</td>
                                 <td>
                                     <button onclick='openEditModal(${expense.id})'>Edit</button>
                                     <button onclick='confirmDelete(${expense.id})'>Delete</button>
