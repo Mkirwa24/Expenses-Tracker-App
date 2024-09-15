@@ -368,12 +368,17 @@ window.addEventListener('resize', function() {
         }
 
         const expense = await response.json();
+
+        // Format the date to yyyy-MM-dd
+        const formattedDate = new Date(expense.date).toISOString().split('T')[0];
+
         document.getElementById('editExpenseId').value = expense.id;
         document.getElementById('editExpenseName').value = expense.name;
         document.getElementById('editExpenseAmount').value = expense.amount;
-        document.getElementById('editExpenseDate').value = expense.date;
+        document.getElementById('editExpenseDate').value = formattedDate;
         document.getElementById('editExpenseCategory').value = expense.category;
 
+        // Show the edit modal
         document.getElementById('editModal').style.display = 'block';
     } catch (error) {
         console.error('Error fetching expense for edit:', error);
@@ -426,6 +431,7 @@ document.querySelectorAll('.close').forEach(function(closeBtn) {
         closeBtn.closest('.modal').style.display = 'none';
     });
 });
+
 document.getElementById('statusMessageOkButton').addEventListener('click', function() {
     document.getElementById('statusMessageModal').style.display = 'none';
 });
