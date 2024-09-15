@@ -242,13 +242,13 @@ async function fetchChartData() {
     try {
         // Get the token from local storage
         const token = localStorage.getItem('token');
+        if (!token) throw new Error('User not authenticated');
 
         // Fetch chart data from the server with authorization header
         const responseCategory = await fetch('https://expenses-tracking-application1.onrender.com/charts/expenses-by-category', {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                'Authorization': `Bearer ${token}`
             }
         });
 
