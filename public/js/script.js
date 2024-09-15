@@ -258,6 +258,7 @@ async function fetchChartData() {
         const dataCategory = await responseCategory.json();
 
         // Create and display a pie chart
+        document.addEventListener('DOMContentLoaded', function() {
         const pieCtx = document.getElementById('expensePieChart').getContext('2d');
         new Chart(pieCtx, {
             type: 'pie',
@@ -278,7 +279,7 @@ async function fetchChartData() {
                 }
             }
         });
-
+    })
         // Fetch total expenses by month
         const responseMonth = await fetch('https://expenses-tracking-application1.onrender.com/charts/expenses-by-month', {
             method: 'GET',
@@ -342,6 +343,7 @@ async function fetchChartData() {
         console.error('Error fetching chart data:', error); // Handle errors in fetching chart data
     }
 }
+
 
 window.addEventListener('resize', function(){
     new Chart.resize();          // Adjust the chart size dynamically

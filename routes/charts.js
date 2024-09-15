@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
+const authenticateToken = require('../middleware/authenticateToken');
 
 // Get total expenses by category
-router.get('/expenses-by-category', async (req, res) => {
+router.get('/expenses-by-category', authenticateToken, async (req, res) => {
     try {
         const userId = req.user.id;
 
@@ -23,7 +24,7 @@ router.get('/expenses-by-category', async (req, res) => {
 });
 
 // Get total expenses by month
-router.get('/expenses-by-month', async (req, res) => {
+router.get('/expenses-by-month', authenticateToken, async (req, res) => {
     try {
         const userId = req.user.id;
 
