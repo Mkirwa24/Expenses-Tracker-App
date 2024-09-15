@@ -236,7 +236,9 @@ function showSessionExpiredModal() {
     });
 }
 
- 
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchChartData();
+
  // function to fetch and display chart data
 async function fetchChartData() {
     try {
@@ -344,6 +346,7 @@ async function fetchChartData() {
     }
 }
 
+});
 
 window.addEventListener('resize', function(){
     new Chart.resize();          // Adjust the chart size dynamically
