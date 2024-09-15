@@ -346,9 +346,12 @@ async function fetchChartData() {
 }
 
 
-window.addEventListener('resize', function(){
-    new Chart.resize();          // Adjust the chart size dynamically
-  });
+// Event listener to resize charts dynamically
+window.addEventListener('resize', function() {
+    Chart.helpers.each(Chart.instances, function(instance) {
+        instance.resize();
+    });
+});
 
  // Function to open the edit modal
   const openEditModal = async(expenseId) => {
