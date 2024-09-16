@@ -36,7 +36,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px; /* Add a max-width for larger screens */
+    max-width: 100%; /* Add a max-width for larger screens */
     
 }
 
@@ -54,6 +54,7 @@ header nav a:hover, footer a:hover{
 
 nav {
     display: flex;
+    justify-content: center;
     gap: 15px;
 }
 
