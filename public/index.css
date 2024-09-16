@@ -49,10 +49,8 @@ header nav a, footer a{
     margin: 0 10px;
 }
 header nav a {
-    padding: 8px 12px;
-    color: #fff;
+    padding: 12px;
     border-radius: 5px;
-    margin-left: 10px;
   }
 
 
