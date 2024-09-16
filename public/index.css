@@ -360,7 +360,11 @@ img {
     height: 300px;
     width: 600px; 
     justify-content: center; 
-   padding: 10px;       
+   padding: 10px;
+   max-width: 100%;
+   display: block;
+   margin: 0 auto;
+
 }
 
 
@@ -376,16 +380,6 @@ canvas {
     margin: 20px auto; /* Center the chart container with some margin */
 }
 
-
-/* Responsive Image Styles */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border: 2px solid #000;
-    border-radius: 10px;
-}
 
 /* Responsive Layout Adjustments */
 @media (max-width: 768px) {
