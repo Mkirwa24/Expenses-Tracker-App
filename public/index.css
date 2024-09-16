@@ -37,12 +37,6 @@ header {
     justify-content: space-between;
 }
 
-header nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
 header nav a, footer a{
     color:antiquewhite;
     text-decoration: none;
