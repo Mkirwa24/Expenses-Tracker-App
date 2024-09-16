@@ -118,12 +118,32 @@ td a:hover{
 }
 
 /*Responsive Styles */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     main, form{
         padding: 10px;
     }
     table, th, td {
         font-size: 14px;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.5rem; /* Adjust heading size for mobile */
+    }
+    
+    nav a {
+        font-size: 1rem; /* Adjust link size for better readability */
+        padding: 8px 0;  /* Ensure proper spacing on smaller screens */
     }
 }
 
