@@ -2,12 +2,8 @@
 body{
     font-family:Arial, sans-serif;
     margin:0;
-    padding:10;
-    background-color:beige;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    padding:0;
+     background-color:beige;
     }
 
 
@@ -15,9 +11,13 @@ header{
     background-color:rgb(3, 58, 52);
     color:azure;
     text-align: center;
-    padding: 1em 0;
-
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 footer {
     text-align: center;
     padding: 10px;
@@ -31,7 +31,7 @@ footer {
 header {
     color: white;
     padding: 10px;
-    position: relative;
+    position: sticky;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -198,6 +198,7 @@ button:hover {
     align-items: center;
     z-index: 2000;
 }
+
 .modal-content {
     background-color: #fefefe;
     margin: 5% auto;
