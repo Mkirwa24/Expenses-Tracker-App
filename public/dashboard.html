@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Dashboard</title>
     <link rel="stylesheet" href="index.css"> <!-- Include your CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js -->
 </head>
 <body>
@@ -16,11 +17,31 @@
       
         <nav id="dashboardNav">
             <ul>
-                <li><a href="view_expense.html">View Expenses</a></li>
-                <li><a href="add_expense.html">Add Expense</a></li>
-                <li><a href="charts.html">View Charts</a></li>
-                <li><a href="#aboutUs">About Us</a></li>
-                <li></li><button id="logoutButton">Logout</button></li>
+                <li>
+                    <a href="view_expense.html">
+                    <i class="fas fa-list-alt"></i> View Expenses
+                </a>
+               </li>
+                <li>
+                    <a href="add_expense.html">
+                        <i class="fas fa-plus-circle"></i> Add Expense
+                    </a>
+                </li>
+                <li>
+                    <a href="charts.html">
+                        <i class="fas fa-chart-pie"></i> View Charts
+                    </a>
+                </li>
+                <li>
+                    <a href="#aboutUs">
+                        <i class="fas fa-info-circle"></i> About Us
+                    </a>
+                </li>
+                <li>
+                    <button id="logoutButton">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </li>
             </ul>
         </nav>
     </div>
