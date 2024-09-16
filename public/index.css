@@ -1,110 +1,113 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+/*general styles*/
+body{
+    font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
     background-color: #f4f4f4;
 }
 
-header, footer {
-    background-color: rgb(9, 139, 126);
-    color: azure;
+header, footer{
+    background-color:rgb(9, 139, 126);
+    color:azure;
     text-align: center;
     padding: 1em 0;
+
 }
 
-header nav a, footer a {
-    color: antiquewhite;
+header nav a, footer a{
+    color:antiquewhite;
     text-decoration: none;
     margin: 0 10px;
 }
 
-header nav a:hover, footer a:hover {
-    text-decoration: underline;
+header nav a:hover, footer a:hover{
+    text-decoration:underline;
 }
 
-main {
+main{
     padding: 20px;
 }
 
-/* Form Styles */
-form {
+/*Form Styles*/
+form{
     background: #f4f4f4;
     padding: 20px;
     margin: 20px auto;
     border-radius: 5px;
     max-width: 400px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-label {
+label{
     display: block;
     margin-bottom: 5px;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"]{
+  width: 100%;
+  padding: 10px; 
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px; 
 }
 
-button {
+button{
     background-color: #333;
-    color: antiquewhite;
+    color:antiquewhite;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
+button:hover{
     background-color: #555;
 }
 
-/* Table Styles */
-table {
+/*Table styles*/
+table{
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
 }
 
-table, th, td {
+table, th, td{
     border: 1px solid #ddd;
 }
 
-th, td {
+th, td{
     padding: 10px;
     text-align: left;
 }
 
-th {
+th{
     background-color: #f4f4f4;
 }
 
-td a {
+td a{
     color: #333;
     text-decoration: none;
     margin-right: 10px;
 }
 
-td a:hover {
+td a:hover{
     text-decoration: underline;
 }
 
-/* Responsive Styles */
+/*Responsive Styles */
 @media (max-width: 600px) {
-    main, form {
+    main, form{
         padding: 10px;
     }
-
     table, th, td {
         font-size: 14px;
     }
 }
 
-/* Section and Heading Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
 section {
     margin-bottom: 2rem;
 }
@@ -120,7 +123,35 @@ h2 {
     border-radius: 5px;
 }
 
-/* Modal Styles */
+form {
+    margin-top: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
 .modal {
     display: none;
     position: fixed;
@@ -129,7 +160,9 @@ h2 {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
     padding-top: 60px;
 }
 
@@ -144,26 +177,205 @@ h2 {
     border-radius: 10px;
 }
 
-#statusOkButton, #sessionExpiredOkButton {
-    padding: 10px 20px;
-    background-color: #007bff;
+#statusOkButton {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
-#statusOkButton:hover, #sessionExpiredOkButton:hover {
+#statusOkButton:hover {
+    background-color: #45a049;
+}
+
+
+#sessionExpiredModal p {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+#sessionExpiredOkButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#sessionExpiredOkButton:hover {
     background-color: #0056b3;
 }
 
-/* Chart Styles */
-.chart-container {
-    width: 100%;
-    max-width: 1000px;
-    height: auto;
-    margin: 20px auto;
+
+#logoutSuccessModal {
+    display: none;
 }
+
+
+.chart-container {
+    margin-bottom: 30px;
+}
+.chart-container h3 {
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color:beige;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.nav-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hidden by default */
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+.nav-menu.active {
+    left: 0;
+}
+.nav-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.nav-menu ul li {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+}
+.nav-menu ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+.nav-menu ul li a:hover {
+    background-color: #575757;
+}
+.nav-menu ul li button {
+    width: 100%;
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+}
+.nav-menu ul li button:hover {
+    background-color: #e53935;
+}
+.close-btn {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 500;
+}
+#content {
+    margin-left: 0;
+    padding: 20px;
+    transition: margin-left 0.3s ease;
+}
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.go-back-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.go-back-btn:hover {
+    background-color: #0056b3;
+}
+
+
+img {
+    border: 2px solid #000; /* Adds a border around the image */
+    border-radius: 10px;     /* Rounds the corners of the image */        /* Ensures the image is responsive */
+    height: 300px;
+    width: 600px; 
+    justify-content: center; 
+   padding: 10px;       
+}
+
+
+canvas {
+    width: 100xpx!important;
+    height: 600px !important;
+}
+
+.chart-container {
+    width:100%;
+    max-width: 1000px; /* Maximum width of the chart */
+    height: auto; /* Automatically adjust height */
+    margin: 20px auto; /* Center the chart container with some margin */
+}
+
 
 /* Responsive Image Styles */
 img {
@@ -188,15 +400,4 @@ img {
     p {
         font-size: 0.9em;
     }
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 10px;
-    background: #333;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
