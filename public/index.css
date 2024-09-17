@@ -145,8 +145,9 @@ td a:hover{
     nav {
         display: flex;
         flex-direction:row;
-        gap: 0px;
+        gap: 15px;
         width: 100%;
+
     }
 
     h1 {
