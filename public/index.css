@@ -5,7 +5,10 @@ body{
     padding:0;
      background-color:beige;
     }
-
+    html, body {
+        width: 100%;
+        overflow-x: hidden; /* Disable horizontal scroll */
+    }
 
 header{
     background-color:rgb(3, 58, 52);
@@ -141,7 +144,7 @@ td a:hover{
         align-items: flex-start;
     }
     
-    nav ,button {
+    nav {
         display: flex;
         flex-direction:row;
         gap: 0px;
