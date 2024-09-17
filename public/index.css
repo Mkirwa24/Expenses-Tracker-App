@@ -32,7 +32,7 @@ footer {
 }
 
 header {
-    padding: 10px 30px;
+    padding: 10px ;
     position: sticky;
     display: flex;
     align-items: center;
