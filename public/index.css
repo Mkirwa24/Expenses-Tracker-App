@@ -141,7 +141,7 @@ td a:hover{
         align-items: flex-start;
     }
     
-    nav {
+    nav ,button {
         display: flex;
         flex-direction:row;
         gap: 8px;
