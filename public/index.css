@@ -55,7 +55,7 @@ header nav a:hover, footer a:hover{
 nav {
     display:flex;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
     margin-right: 10px;
 }
 
