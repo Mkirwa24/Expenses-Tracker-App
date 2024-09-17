@@ -39,7 +39,6 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100vw;
-    margin-right:10px;  
 }
 
 header nav a, footer a{
@@ -58,6 +57,7 @@ nav {
     display:inline-block;
     justify-content: center;
     gap: 15px;
+    margin-right: 10px;
 }
 
 main{
