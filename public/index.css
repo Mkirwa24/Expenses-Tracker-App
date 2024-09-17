@@ -144,7 +144,7 @@ td a:hover{
     nav ,button {
         display: flex;
         flex-direction:row;
-        gap: 2px;
+        gap: 0px;
         width: 100%;
     }
 
