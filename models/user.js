@@ -22,7 +22,7 @@ class User {
         let connection;
         try {
             connection = await mysql.createConnection(dbConfig);
-            const [rows] = await connection.execute('SELECT * FROM users WHERE resetToken = ?', [token]);
+            const [rows] = await connection.execute('SELECT * FROM users WHERE resetToken =? AND resetTokenExpiry > ?', [token, Date.now()]);
             return rows.length ? rows[0] : null; // Return the first user or null
         } catch (error) {
             console.error('Error finding user by reset token:', error);
