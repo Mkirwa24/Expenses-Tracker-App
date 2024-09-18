@@ -440,3 +440,11 @@ p {
         margin-bottom: 20px;
     }
 }
+
+/* Prevent overflow on large screens */
+@media (min-width: 769px) {
+    header {
+        max-width: 100%;
+        padding: 10px 20px;
+    }
+}
