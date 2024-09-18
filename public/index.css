@@ -384,8 +384,8 @@ button:hover {
 
 
 canvas {
-    width: 100xpx !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 400px !important;
 }
 
 
