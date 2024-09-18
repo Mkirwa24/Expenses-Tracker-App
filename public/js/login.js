@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Display success message and redirect after 2 seconds
                 showStatusMessage('Login successful. Redirecting...', 'green');
                 localStorage.setItem('token', data.accessToken); // Store the token in localStorage
-                setTimeout(() => window.location.href = 'dashboard.html', 2000);
+                setTimeout(() => window.location.href = '/Dashboard', 2000);
             } else {
                 // Display error message
                 showStatusMessage(data.message || 'Login failed.', 'red');
