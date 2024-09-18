@@ -384,13 +384,11 @@ button:hover {
 
 
 canvas {
-    width: 100xpx!important;
-    height: 600px !important;
+    width: 100% !important;
+    height: auto !important;
 }
 
-.chart-container {
-    margin-bottom: 30px;
-}
+
 .chart-container h3 {
     text-align: center;
 }
@@ -401,6 +399,11 @@ canvas {
     margin: 20px auto; /* Center the chart container with some margin */
 }
 
+@media (max-width: 768px) {
+    .chart-container {
+        max-width: 100%; /* Ensure full-width on smaller screens */
+    }
+}
 
 .icon-section {
     display: flex;
