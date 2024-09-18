@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Auto-close the modal and redirect after 3 seconds
                         setTimeout(() => {
                             console.log('Redirecting to index.html');
-                            window.location.href = '/Home';
+                            window.location.href = 'index.html';
                         }, 3000);
                     } else {
                         console.error('Success modal not found');
