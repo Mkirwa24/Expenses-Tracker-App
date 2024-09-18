@@ -385,7 +385,7 @@ button:hover {
 
 canvas {
     width: 100% !important;
-    height: 100% !important;
+    height: auto !important;
 }
 
 
@@ -395,7 +395,6 @@ canvas {
 .chart-container {
     width:100%;
     max-width: 1000px; /* Maximum width of the chart */
-    height: auto; /* Automatically adjust height */
     margin: 20px auto; /* Center the chart container with some margin */
 }
 
