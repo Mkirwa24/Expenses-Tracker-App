@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendPasswordResetEmail = (to, token) => {
-    const resetLink = `https://expenses-tracking-application1.onrender.com/reset-password?token=${token}`;
+    const resetLink = `https://expenses-tracking-application1.netlify.app/reset-password?token=${token}`;
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: to,
