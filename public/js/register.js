@@ -40,9 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Display success message and redirect after 2 seconds
                 showStatusMessage('Registration successful. Redirecting...', 'green');
                 setTimeout(() => window.location.href = 'login.html', 2000);
-            } else {
-                // Display error message if user already exists or other issues
+            } else if (response.status === 409) {
+                // Display 'User already exists' message
                 showStatusMessage(data.message || 'User already exists.', 'red');
+            } else {
+                // Handle other cases such as server error
+                showStatusMessage(data.message || 'An error occurred during registration.', 'red');
             }
         } catch (error) {
             console.error('Error during registration:', error);
