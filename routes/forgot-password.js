@@ -2,10 +2,16 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const sendPasswordResetEmail = require('../utils/sendPasswordResetEmail');
-const generateResetToken = require('../utils/tokenUtils');
+const {generateResetToken } = require('../utils/tokenUtils');
+const bcrypt = require('bcrypt');
+
+// Function to compare the provided answer with the stored hashed answer
+const verifySecurityAnswer = async (storedAnswer, providedAnswer) => {
+    return bcrypt.compare(providedAnswer, storedAnswer);
+};
 
 router.post('/', async (req, res) => {
-    const { email } = req.body;
+    const { email, securityAnswer  } = req.body;
 
     try {
         const results = await User.findByEmail(email);
@@ -17,17 +23,36 @@ router.post('/', async (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ message: 'User not found' });
         }
+      // Check if the user has exceeded the maximum number of reset attempts (e.g., 3 attempts)
+       const now = Date.now();
+       const timeSinceLastAttempt = now - new Date(user.lastAttempt).getTime();
 
+       if (user.resetAttempts >= 3 && timeSinceLastAttempt < 24 * 60 * 60 * 1000) { // 24-hour limit
+       return res.status(429).json({ message: 'Too many reset attempts. Try again later.' });
+        }
+        
+        // Verify the provided security answer with the hashed answer in the database
+        const isAnswerValid = await verifySecurityAnswer(user.securityAnswer, securityAnswer);
+
+        if (!isAnswerValid) {
+            // Increment reset attempts
+            await User.update({ resetAttempts: user.resetAttempts + 1, lastAttempt: now }, { where: { id: user.id } });
+            return res.status(401).json({ message: 'Incorrect security answer' });
+        }
+
+          // If the answer is valid, reset the attempts and update the last attempt time
+          await User.update({ resetAttempts: 0, lastAttempt: now }, { where: { id: user.id } });
+          
         const user = results[0];
         const token = generateResetToken();
-        const expiry = new Date(Date.now() + 3600000); // Token valid for 1 hour
+        const expiry = new Date(Date.now() + 15 * 60 * 1000); // Token valid for 15 mins
 
         await User.updateResetToken(user.id, token, expiry);
 
         // Send reset email
         sendPasswordResetEmail(user.email, token);
 
-        res.json({ message: 'Password reset link has been sent', token });
+        res.json({ message: 'Password reset email has been sent.' });
     } catch (err) {
         console.error('Error processing password reset:', err);
         res.status(500).json({ message: 'Internal server error' });

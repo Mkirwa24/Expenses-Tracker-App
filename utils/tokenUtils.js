@@ -4,4 +4,9 @@ const generateResetToken = () => {
     return crypto.randomBytes(20).toString('hex');
 };
 
-module.exports = generateResetToken;
+const tokenExpiry = () => {
+    const expiryTime = Date.now() + 15 * 60 * 1000; // 15 minutes from now
+    return expiryTime;
+};
+
+module.exports = {generateResetToken, tokenExpiry};

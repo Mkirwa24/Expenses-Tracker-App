@@ -78,10 +78,14 @@ app.get('/', (req, res) => {
      console.log('Expenses table created or already exists.');
  });
 
- 
-
+ // Function to hash security answer
+const hashSecurityAnswer = async (answer) => {
+    const salt = await bcrypt.genSalt(10);
+    return bcrypt.hash(answer, salt);
+};
 // User registration route
 app.post('/api/register', async (req, res) => {
+    const { email, username, password, securityAnswer } = req.body;
     try {
         const usersQuery = 'SELECT * FROM users WHERE email = ? OR username = ?';
         db.query(usersQuery, [req.body.email, req.body.username], async (err, data) => {
@@ -90,12 +94,16 @@ app.post('/api/register', async (req, res) => {
             
             // Hash the password
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-            const createUserQuery = 'INSERT INTO users(email, username, password) VALUES(?, ?, ?)';
+ 
+            // Hash the security answer
+            const hashedSecurityAnswer = await hashSecurityAnswer(securityAnswer);
+           
+            const createUserQuery = 'INSERT INTO users(email, username, password, securityAnswer) VALUES(?, ?, ?, ?)';
             const values = [
                 req.body.email,
                 req.body.username,
-                hashedPassword
+                hashedPassword,
+                hashedSecurityAnswer
             ];
 
             // Insert user in db

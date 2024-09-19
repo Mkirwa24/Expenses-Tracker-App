@@ -9,7 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value; // Get the confirm password value
-
+        const securityQuestion = document.getElementById('securityQuestion').value;
+        const securityAnswer = document.getElementById('securityAnswer').value;
+    
 
         // Check if password and confirm password match
         if (password !== confirmPassword) {
@@ -17,13 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return; // Stop the form from submitting
         }
         
+         // Check if security answer is provided
+         if (!securityAnswer) {
+            showStatusMessage('Please provide an answer to the security question.', 'red');
+            return;
+        }
+
         try {
             const response = await fetch('https://expenses-tracking-application1.onrender.com/api/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password }) // Send form data as JSON
+                body: JSON.stringify({ username, email, password, securityQuestion, securityAnswer }) // Send form data as JSON
             });
 
             const data = await response.json();

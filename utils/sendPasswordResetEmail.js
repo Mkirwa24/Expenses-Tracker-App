@@ -21,6 +21,8 @@ const sendPasswordResetEmail = (to, token) => {
         text: `Click the following link to reset your password: ${resetLink}`
     };
 
+    
+
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Error sending email:', error);
@@ -30,4 +32,22 @@ const sendPasswordResetEmail = (to, token) => {
     });
 };
 
-module.exports = sendPasswordResetEmail;
+// Function to send password reset success email
+const sendSuccessEmail = (email) => {
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Your Password Has Been Reset',
+        text: `Your password was successfully reset. If you didn't request this change, please contact support immediately.`
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending success email:', error);
+        } else {
+            console.log('Success email sent:', info.response);
+        }
+    });
+};
+
+module.exports = {sendPasswordResetEmail, sendSuccessEmail};

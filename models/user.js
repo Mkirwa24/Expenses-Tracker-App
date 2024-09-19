@@ -90,6 +90,52 @@ class User {
             }
         }
     }
+
+    // Update security question and answer
+    static async updateSecurityQuestion(userId, question, hashedAnswer) {
+        let connection;
+        try {
+            connection = await mysql.createConnection(dbConfig);
+            const [result] = await connection.execute(
+                'UPDATE users SET securityQuestion = ?, securityAnswer = ? WHERE id = ?',
+                [question, hashedAnswer, userId]
+            );
+            return result;
+        } catch (error) {
+            console.error('Error updating security question:', error);
+            throw new Error('Database update error');
+        } finally {
+            if (connection) {
+                await connection.end();
+            }
+        }
+    }
+
+    // Verify security answer during password reset
+    static async verifySecurityAnswer(email, providedAnswer) {
+        let connection;
+        try {
+            connection = await mysql.createConnection(dbConfig);
+            const [rows] = await connection.execute(
+                'SELECT securityAnswer FROM users WHERE email = ?', 
+                [email]
+            );
+            if (rows.length) {
+                const storedAnswer = rows[0].securityAnswer;
+                // Compare provided answer with stored (hashed) answer
+                return bcrypt.compare(providedAnswer, storedAnswer); 
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error('Error verifying security answer:', error);
+            throw new Error('Database query error');
+        } finally {
+            if (connection) {
+                await connection.end();
+            }
+        }
+    } 
 }
 
 module.exports = User;

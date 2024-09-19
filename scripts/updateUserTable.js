@@ -2,25 +2,25 @@
 //const dbConfig = require('../dbConfig'); // Adjust the path to your dbConfig file
 
 //async function updateUserTable() {
- //   let connection;
-  //  try {
-      //  connection = await mysql.createConnection(dbConfig);
+    //let connection;
+    //try {
+     //   connection = await mysql.createConnection(dbConfig);
 
-     //   const query = `
-     //       ALTER TABLE users
-     //       ADD COLUMN resetToken VARCHAR(255),
-     //       ADD COLUMN resetTokenExpiry BIGINT
-     //   `;
+     //  const query = `
+     //      ALTER TABLE users
+     //      ADD COLUMN securityQuestion VARCHAR(255),
+    //       ADD COLUMN securityAnswerHash VARCHAR(255);
+    //    `;
 
-     //   await connection.execute(query);
-     //   console.log('Users table updated successfully!');
-    //} catch (error) {
-    //    console.error('Error updating users table:', error);
-    //} finally {
+   //    await connection.execute(query);
+   //     console.log('Users table updated successfully!');
+   // } catch (error) {
+  //     console.error('Error updating users table:', error);
+ //   } finally {
 //if (connection) {
-     //       await connection.end();
-      //  }
-    //}
+  //        await connection.end();
+   //   }
+//}
 //}
 
 //updateUserTable();

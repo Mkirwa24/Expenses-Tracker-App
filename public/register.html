@@ -33,7 +33,19 @@
                  <!-- New Confirm Password field -->
                  <label for="confirmPassword">Confirm Password:</label>
                  <input type="password" id="confirmPassword" name="confirmPassword" required>
- 
+               <!-- Security Question -->
+           <label for="securityQuestion">Security Question:</label>
+           <select id="securityQuestion" name="securityQuestion" required>
+           <option value="" disabled selected>Select a security question</option>
+           <option value="firstPet">What is the name of your first pet?</option>
+           <option value="birthCity">In what city were you born?</option>
+           </select>
+
+            <!-- Security Answer -->
+            <label for="securityAnswer">Answer:</label>
+            <input type="text" id="securityAnswer" name="securityAnswer" required>
+
+
                 <button type="submit">Register</button>
                 <p id="authMsg"></p> <!-- Container for success/error messages -->
             

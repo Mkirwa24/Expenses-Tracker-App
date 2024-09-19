@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('resetPasswordForm');
     const tokenField = document.getElementById('token');
+    const passwordField = document.getElementById('newPassword');
+    const strengthIndicator = document.getElementById('strengthIndicator');
 
     // Extract token from query string
     const urlParams = new URLSearchParams(window.location.search);
@@ -8,6 +10,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (token) {
         tokenField.value = token; // Set the token in the hidden field
     }
+
+    // Password strength indicator logic
+    passwordField.addEventListener('input', () => {
+        const strength = calculatePasswordStrength(passwordField.value);
+        strengthIndicator.textContent = strength;
+        updateStrengthIndicatorVisual(strength);
+    });
+
+    function calculatePasswordStrength(password) {
+        let strength = 'Weak';
+        if (password.length >= 8 && /[A-Z]/.test(password) && /\d/.test(password) && /[!@#$%^&*]/.test(password)) {
+            strength = 'Strong';
+        } else if (password.length >= 6) {
+            strength = 'Moderate';
+        }
+        return strength;
+    }
+
+    // Update the visual appearance of the strength indicator
+    function updateStrengthIndicatorVisual(strength) {
+        strengthIndicator.className = ''; // Reset classes
+        if (strength === 'Weak') {
+            strengthIndicator.classList.add('strength-weak');
+        } else if (strength === 'Moderate') {
+            strengthIndicator.classList.add('strength-moderate');
+        } else if (strength === 'Strong') {
+            strengthIndicator.classList.add('strength-strong');
+        }
+    }
+
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();

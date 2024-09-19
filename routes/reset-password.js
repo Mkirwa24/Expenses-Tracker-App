@@ -59,6 +59,9 @@ router.post('/', async (req, res) => {
         await User.updatePassword(user.id, hashedPassword);
         await User.clearResetToken(user.id);
 
+        // notify the user
+        sendSuccessEmail(user.email); 
+
         res.json({ message: 'Password has been reset successfully' });
     } catch (error) {
         console.error('Error during password reset:', error.message);
