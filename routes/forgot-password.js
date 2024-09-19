@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
 
           // If the answer is valid, reset the attempts and update the last attempt time
           await User.update({ resetAttempts: 0, lastAttempt: now }, { where: { id: user.id } });
-          
+
         const user = results[0];
         const token = generateResetToken();
         const expiry = new Date(Date.now() + 15 * 60 * 1000); // Token valid for 15 mins
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
         await User.updateResetToken(user.id, token, expiry);
 
         // Send reset email
-        sendPasswordResetEmail(user.email, token);
+        sendPasswordResetEmail(user.email, user.username, token);
 
         res.json({ message: 'Password reset email has been sent.' });
     } catch (err) {

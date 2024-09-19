@@ -18,10 +18,16 @@ const sendPasswordResetEmail = (to, token) => {
         from: process.env.EMAIL_USER,
         to: to,
         subject: 'Password Reset Request',
-        text: `Click the following link to reset your password: ${resetLink}`
-    };
-
+        text: `Hi ${userName},
+    We received a request to reset your password. You can reset your password by clicking the link below:
     
+    Reset Password: ${resetLink}
+    
+    If you did not request this password reset, please ignore this email or contact our support team.
+
+    For security reasons, this link will expire in 30 minutes and can only be used once.`,
+        }; 
+
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
