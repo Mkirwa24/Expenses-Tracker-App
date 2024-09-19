@@ -85,7 +85,7 @@ const hashSecurityAnswer = async (answer) => {
 };
 // User registration route
 app.post('/api/register', async (req, res) => {
-    const { email, username, password, securityAnswer } = req.body;
+    const {  securityAnswer } = req.body;
     try {
         const usersQuery = 'SELECT * FROM users WHERE email = ? OR username = ?';
         db.query(usersQuery, [req.body.email, req.body.username], async (err, data) => {
