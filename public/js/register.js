@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password, securityQuestion, securityAnswerHash }) // Send form data as JSON
+                body: JSON.stringify({ username, email, password, securityQuestion, securityAnswer }) // Send form data as JSON
             });
 
             const data = await response.json();
