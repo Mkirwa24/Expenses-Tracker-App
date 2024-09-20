@@ -11,7 +11,7 @@ const verifySecurityAnswerHash = async (storedAnswer, providedAnswer) => {
 };
 
 router.post('/', async (req, res) => {
-    const { email, securityAnswerHash  } = req.body;
+    const { email, securityAnswer } = req.body;
 
     try {
         const results = await User.findByEmail(email);
@@ -23,6 +23,9 @@ router.post('/', async (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ message: 'User not found' });
         }
+
+        const user = results[0];
+
       // Check if the user has exceeded the maximum number of reset attempts (e.g., 3 attempts)
        const now = Date.now();
        const timeSinceLastAttempt = now - new Date(user.lastAttempt).getTime();
@@ -32,7 +35,7 @@ router.post('/', async (req, res) => {
         }
         
         // Verify the provided security answer with the hashed answer in the database
-        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswerHash, securityAnswerHash);
+        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswerHash, securityAnswer);
 
         if (!isAnswerValid) {
             // Increment reset attempts
@@ -43,7 +46,7 @@ router.post('/', async (req, res) => {
           // If the answer is valid, reset the attempts and update the last attempt time
           await User.update({ resetAttempts: 0, lastAttempt: now }, { where: { id: user.id } });
 
-        const user = results[0];
+        
         const token = generateResetToken();
         const expiry = new Date(Date.now() + 15 * 60 * 1000); // Token valid for 15 mins
 
