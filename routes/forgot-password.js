@@ -7,6 +7,9 @@ const bcrypt = require('bcrypt');
 
 // Function to compare the provided answer with the stored hashed answer
 const verifySecurityAnswerHash = async (storedAnswer, providedAnswer) => {
+    if (!storedAnswer || !providedAnswer) {
+        throw new Error('Missing data to compare answers');
+    }
     return bcrypt.compare(providedAnswer, storedAnswer);
 };
 
@@ -35,7 +38,7 @@ router.post('/', async (req, res) => {
         }
         
         // Verify the provided security answer with the hashed answer in the database
-        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswer, securityAnswer);
+        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswerHash, securityAnswer);
 
         if (!isAnswerValid) {
             // Increment reset attempts
