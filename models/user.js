@@ -136,6 +136,25 @@ class User {
             }
         }
     } 
+
+    static async updateResetAttempts(userId, attempts, lastAttempt) {
+        let connection;
+        try {
+            connection = await mysql.createConnection(dbConfig);
+            const [result] = await connection.execute(
+                'UPDATE users SET resetAttempts = ?, lastAttempt = ? WHERE id = ?',
+                [attempts, lastAttempt, userId]
+            );
+            return result;
+        } catch (error) {
+            console.error('Error updating reset attempts:', error);
+            throw new Error('Database update error');
+        } finally {
+            if (connection) {
+                await connection.end();
+            }
+        }
+    }
 }
 
 module.exports = User;

@@ -35,17 +35,16 @@ router.post('/', async (req, res) => {
         }
         
         // Verify the provided security answer with the hashed answer in the database
-        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswerHash, securityAnswer);
+        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswer, securityAnswer);
 
         if (!isAnswerValid) {
             // Increment reset attempts
-            await User.update({ resetAttempts: user.resetAttempts + 1, lastAttempt: now }, { where: { id: user.id } });
+            await User.updateResetAttempts( user.id, user.resetAttempts + 1, now );
             return res.status(401).json({ message: 'Incorrect security answer' });
         }
 
-          // If the answer is valid, reset the attempts and update the last attempt time
-          await User.update({ resetAttempts: 0, lastAttempt: now }, { where: { id: user.id } });
-
+         // If the answer is valid, reset the attempts and update the last attempt time
+        await User.updateResetAttempts(user.id, 0, now);      // Create a method to reset attempts
         
         const token = generateResetToken();
         const expiry = new Date(Date.now() + 15 * 60 * 1000); // Token valid for 15 mins
