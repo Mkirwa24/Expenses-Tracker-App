@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const securityAnswer = document.getElementById('securityAnswer').value;
 
+        if (!email || !securityAnswer) {
+            alert('Both email and security answer are required.');
+            return;
+        }
+
         try {
             const response = await fetch('https://expenses-tracking-application1.onrender.com/forgot-password', {
                 method: 'POST',
