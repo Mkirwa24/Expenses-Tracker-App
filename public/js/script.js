@@ -141,7 +141,7 @@ const formatDate = (dateString) => {
             }
         } catch (error) {
             console.error('Error fetching expenses:', error);
-            showStatusMessage('No expenses found.', 'red');
+            showStatusMessage('No expenses found.Please add expenses!', 'red');
         }
     }
 
