@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value; // Get the confirm password value
         const securityQuestion = document.getElementById('securityQuestion').value;
-        const securityAnswerHash = document.getElementById('securityAnswer').value;
+        const securityAnswer = document.getElementById('securityAnswer').value;
     
 
         // Check if password and confirm password match
