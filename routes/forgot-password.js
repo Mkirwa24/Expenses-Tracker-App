@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
-const sendPasswordResetEmail = require('../utils/sendPasswordResetEmail');
+const {sendPasswordResetEmail} = require('../utils/sendPasswordResetEmail');
 const {generateResetToken } = require('../utils/tokenUtils');
 const bcrypt = require('bcrypt');
 

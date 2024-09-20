@@ -25,7 +25,7 @@ const sendPasswordResetEmail = (to, token) => {
     
     If you did not request this password reset, please ignore this email or contact our support team.
 
-    For security reasons, this link will expire in 30 minutes and can only be used once.`,
+    For security reasons, this link will expire in 15 minutes and can only be used once.`,
         }; 
 
 
