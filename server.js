@@ -49,7 +49,9 @@ app.get('/', (req, res) => {
          securityQuestion VARCHAR(255),
          securityAnswerHash VARCHAR(255),
          resetToken VARCHAR(255),       
-         resetTokenExpiry BIGINT        
+         resetTokenExpiry BIGINT,
+         resetAttempts INT DEFAULT 0,
+         lastAttempt DATETIME;        
          )
  `;
  db.query(createUsersTable, (err) => {
