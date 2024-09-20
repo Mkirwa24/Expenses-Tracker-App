@@ -6,12 +6,12 @@ const {generateResetToken } = require('../utils/tokenUtils');
 const bcrypt = require('bcrypt');
 
 // Function to compare the provided answer with the stored hashed answer
-const verifySecurityAnswer = async (storedAnswer, providedAnswer) => {
+const verifySecurityAnswerHash = async (storedAnswer, providedAnswer) => {
     return bcrypt.compare(providedAnswer, storedAnswer);
 };
 
 router.post('/', async (req, res) => {
-    const { email, securityAnswer  } = req.body;
+    const { email, securityAnswerHash  } = req.body;
 
     try {
         const results = await User.findByEmail(email);
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         }
         
         // Verify the provided security answer with the hashed answer in the database
-        const isAnswerValid = await verifySecurityAnswer(user.securityAnswer, securityAnswer);
+        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswerHash, securityAnswerHash);
 
         if (!isAnswerValid) {
             // Increment reset attempts

@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
          username VARCHAR(255) NOT NULL UNIQUE,
          password VARCHAR(255) NOT NULL,
          securityQuestion VARCHAR(255),
-         securityAnswer VARCHAR(255),
+         securityAnswerHash VARCHAR(255),
          resetToken VARCHAR(255),       
          resetTokenExpiry BIGINT        
          )
@@ -87,7 +87,7 @@ const hashSecurityAnswer = async (answer) => {
 };
 // User registration route
 app.post('/api/register', async (req, res) => {
-    const { securityQuestion, securityAnswer } = req.body;
+    const { securityQuestion, securityAnswerHash } = req.body;
     try {
         const usersQuery = 'SELECT * FROM users WHERE email = ? OR username = ?';
         db.query(usersQuery, [req.body.email, req.body.username], async (err, data) => {
@@ -98,9 +98,9 @@ app.post('/api/register', async (req, res) => {
             const hashedPassword = await bcrypt.hash(req.body.password, 10);
  
             // Hash the security answer
-            const hashedSecurityAnswer = await hashSecurityAnswer(securityAnswer);
+            const hashedSecurityAnswer = await hashSecurityAnswer(securityAnswerHash);
            
-            const createUserQuery = 'INSERT INTO users(email, username, password, securityQuestion, securityAnswer) VALUES(?, ?, ?, ?, ?)';
+            const createUserQuery = 'INSERT INTO users(email, username, password, securityQuestion, securityAnswerHash) VALUES(?, ?, ?, ?, ?)';
             const values = [
                 req.body.email,
                 req.body.username,

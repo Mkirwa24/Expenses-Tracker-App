@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value; // Get the confirm password value
         const securityQuestion = document.getElementById('securityQuestion').value;
-        const securityAnswer = document.getElementById('securityAnswer').value;
+        const securityAnswerHash = document.getElementById('securityAnswer').value;
     
 
         // Check if password and confirm password match
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, email, password, securityQuestion, securityAnswer }) // Send form data as JSON
+                body: JSON.stringify({ username, email, password, securityQuestion, securityAnswerHash }) // Send form data as JSON
             });
 
             const data = await response.json();

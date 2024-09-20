@@ -1,26 +1,26 @@
-//const mysql = require('mysql2/promise');
-//const dbConfig = require('../dbConfig'); // Adjust the path to your dbConfig file
+// const mysql = require('mysql2/promise');
+// const dbConfig = require('../dbConfig'); // Adjust the path to your dbConfig file
 
-//async function updateUserTable() {
-    //let connection;
-    //try {
-     //   connection = await mysql.createConnection(dbConfig);
+// async function updateUserTable() {
+  //   let connection;
+  //  try {
+    //    connection = await mysql.createConnection(dbConfig);
 
-     //  const query = `
-     //      ALTER TABLE users
-     //      ADD COLUMN securityQuestion VARCHAR(255),
-    //       ADD COLUMN securityAnswerHash VARCHAR(255);
-    //    `;
+     // const query = `
+      //    ALTER TABLE users
+      //    ADD COLUMN securityQuestion VARCHAR(255),
+      //    ADD COLUMN securityAnswerHash VARCHAR(255);
+      // `;
 
-   //    await connection.execute(query);
-   //     console.log('Users table updated successfully!');
+      // await connection.execute(query);
+       //  console.log('Users table updated successfully!');
    // } catch (error) {
-  //     console.error('Error updating users table:', error);
- //   } finally {
-//if (connection) {
-  //        await connection.end();
-   //   }
-//}
+      // console.error('Error updating users table:', error);
+   // } finally {
+// if (connection) {
+ //        await connection.end();
+    //  }
+// }
 //}
 
-//updateUserTable();
+// updateUserTable();
