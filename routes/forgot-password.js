@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
         }
         
         // Verify the provided security answer with the hashed answer in the database
-        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswerHash, securityAnswer);
+        const isAnswerValid = await verifySecurityAnswerHash(user.securityAnswer, securityAnswer);
 
         if (!isAnswerValid) {
             // Increment reset attempts
