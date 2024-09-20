@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
          resetToken VARCHAR(255),       
          resetTokenExpiry BIGINT,
          resetAttempts INT DEFAULT 0,
-         lastAttempt DATETIME;        
+         lastAttempt DATETIME       
          )
  `;
  db.query(createUsersTable, (err) => {
