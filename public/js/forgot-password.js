@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
                 // Alert user that the password reset link has been sent
-                alert('A password reset link has been sent to your email. Please check your inbox.');
+                alert('A password reset link has been sent to your email. Please check your inbox or spam folder.');
                 // Redirect to the reset password page with token in the query string
                 const resetPasswordUrl = `/reset-password?token=${data.token}`;
                 window.location.href = resetPasswordUrl;
