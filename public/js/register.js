@@ -3,6 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const okButton = document.getElementById('okButton');
     const modal = document.getElementById('statusMessageModal');
 
+    // Show Password feature
+    const passwordInput = document.getElementById('password'); // Password input field
+    const confirmPasswordInput = document.getElementById('confirmPassword'); // Confirm password input field
+    const showPasswordCheckbox = document.getElementById('showPassword'); // Checkbox to toggle show/hide passwords
+
+    showPasswordCheckbox.addEventListener('change', function () {
+        const type = showPasswordCheckbox.checked ? 'text' : 'password';
+        passwordInput.type = type; // Toggle password visibility
+        confirmPasswordInput.type = type; // Toggle confirm password visibility
+    });
+    
     form.addEventListener('submit', async (event) => {
         event.preventDefault(); // Prevent default form submission
         const username = document.getElementById('username').value;
@@ -52,14 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             showStatusMessage('An error occurred during registration.', 'red'); // Display error message
         }
     });
-    
-// Show Password feature
-const passwordInput = document.getElementById('password');
-const showPasswordCheckbox = document.getElementById('showPassword');
 
-showPasswordCheckbox.addEventListener('change', function () {
-    passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
-});
+
     // Handle OK button click to close the modal
     okButton.addEventListener('click', () => {
         modal.style.display = 'none'; // Close the modal when "OK" is clicked
