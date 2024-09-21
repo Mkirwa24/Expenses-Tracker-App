@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
 
+            console.log('Response Data:', data); // Log the server response
+           
             if (response.ok) {
                 // Redirect to login page
                 alert('Password reset successfully. Redirecting to login page...');
