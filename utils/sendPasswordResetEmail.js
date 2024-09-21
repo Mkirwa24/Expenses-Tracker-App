@@ -18,7 +18,7 @@ const sendPasswordResetEmail = (to, token) => {
         from: process.env.EMAIL_USER,
         to: to,
         subject: 'Password Reset Request',
-        text: `Hi ${userName},
+        text: `Hi ${user.username},
     We received a request to reset your password. You can reset your password by clicking the link below:
     
     Reset Password: ${resetLink}
