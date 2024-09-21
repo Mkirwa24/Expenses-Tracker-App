@@ -27,7 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return strength;
     }
+    
+// Show Password feature
+const passwordInput = document.getElementById('password');
+const showPasswordCheckbox = document.getElementById('showPassword');
 
+showPasswordCheckbox.addEventListener('change', function () {
+    passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+});
     // Update the visual appearance of the strength indicator
     function updateStrengthIndicatorVisual(strength) {
         strengthIndicator.className = ''; // Reset classes

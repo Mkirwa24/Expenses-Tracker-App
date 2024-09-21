@@ -52,7 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
             showStatusMessage('An error occurred during registration.', 'red'); // Display error message
         }
     });
+    
+// Show Password feature
+const passwordInput = document.getElementById('password');
+const showPasswordCheckbox = document.getElementById('showPassword');
 
+showPasswordCheckbox.addEventListener('change', function () {
+    passwordInput.type = showPasswordCheckbox.checked ? 'text' : 'password';
+});
     // Handle OK button click to close the modal
     okButton.addEventListener('click', () => {
         modal.style.display = 'none'; // Close the modal when "OK" is clicked

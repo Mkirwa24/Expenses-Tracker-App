@@ -37,8 +37,7 @@ router.get('/', async (req, res) => {
 
 // POST route to handle password reset
 router.post('/', async (req, res) => {
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : req.body.token;
-    const { newPassword } = req.body; // Extract newPassword from req.body
+    const { token, newPassword } = req.body; // Extract newPassword from req.body
 
     if (!token) {
         return res.status(400).json({ message: 'No token provided' });
