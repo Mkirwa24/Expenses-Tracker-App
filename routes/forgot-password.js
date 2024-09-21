@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
         await User.updateResetToken(user.id, token, expiry);
 
         // Send reset email
-        sendPasswordResetEmail(user.email, user.username, token);
+        sendPasswordResetEmail(user.email, token);
 
         res.json({ message: 'Password reset email has been sent.' });
     } catch (err) {
