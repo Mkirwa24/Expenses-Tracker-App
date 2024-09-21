@@ -23,7 +23,7 @@ const sendPasswordResetEmail = (to, token) => {
     
     Reset Password: ${resetLink}
     
-    If you did not request this password reset, please ignore this email or contact our support team.
+    If you did not request this password reset, please ignore this email .
 
     For security reasons, this link will expire in 15 minutes and can only be used once.`,
         }; 
