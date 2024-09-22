@@ -3,7 +3,7 @@ const path = require('path'); // Import the path module
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/user'); // Ensure this is pointing to the correct User model
-const { sendSuccessEmail } = require('../utils/sendSuccessEmail'); // Correct import path
+const { sendSuccessEmail } = require('../utils/sendPasswordResetEmail'); // Correct import path
 
 
 // Middleware to log incoming requests
