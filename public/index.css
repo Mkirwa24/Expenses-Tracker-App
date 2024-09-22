@@ -101,6 +101,17 @@ button:hover{
     background-color: #555;
 }
 
+/* Styles for the password strength indicator */
+.strength-weak {
+    color: red;
+}
+.strength-moderate {
+    color: orange;
+}
+.strength-strong {
+    color: green;
+}
+
 /*Table styles*/
 table{
     width: 100%;
