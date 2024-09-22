@@ -50,14 +50,14 @@ router.post('/', async (req, res) => {
         await User.updateResetAttempts(user.id, 0, now);      // Create a method to reset attempts
         
         const token = generateResetToken();
-        const expiry = new Date(Date.now() + 15 * 60 * 1000); // Token valid for 15 mins
+        const expiry = Math.floor(Date.now() + 15 * 60 * 1000); // Token valid for 15 mins  and Set expiry as a Unix timestamp
 
         await User.updateResetToken(user.id, token, expiry);
 
         // Send reset email
         sendPasswordResetEmail(user.email, token);
 
-        res.json({ message: 'Password reset email has been sent.', token });
+        res.json({ message: 'Password reset email has been sent.'});
     } catch (err) {
         console.error('Error processing password reset:', err);
         res.status(500).json({ message: 'Internal server error' });
