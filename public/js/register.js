@@ -2,12 +2,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('registerForm');
     const okButton = document.getElementById('okButton');
     const modal = document.getElementById('statusMessageModal');
+    const strengthIndicator = document.getElementById('strengthIndicator');
+    const passwordField = document.getElementById('password');
 
+    
     // Show Password feature
     const passwordInput = document.getElementById('password'); // Password input field
     const confirmPasswordInput = document.getElementById('confirmPassword'); // Confirm password input field
     const showPasswordCheckbox = document.getElementById('showPassword'); // Checkbox to toggle show/hide passwords
 
+     // Password strength indicator logic
+     passwordField.addEventListener('input', () => {
+        const strength = calculatePasswordStrength(passwordField.value);
+        strengthIndicator.textContent = `Password Strength: ${strength}`;
+        updateStrengthIndicatorVisual(strength);
+    });
+
+    function calculatePasswordStrength(password) {
+        let strength = 'Weak';
+        if (password.length >= 8 && /[A-Z]/.test(password) && /\d/.test(password) && /[!@#$%^&*]/.test(password)) {
+            strength = 'Strong';
+        } else if (password.length >= 6) {
+            strength = 'Moderate';
+        }
+        return strength;
+    }
+
+    function updateStrengthIndicatorVisual(strength) {
+        strengthIndicator.className = ''; // Reset classes
+        if (strength === 'Weak') {
+            strengthIndicator.classList.add('strength-weak');
+        } else if (strength === 'Moderate') {
+            strengthIndicator.classList.add('strength-moderate');
+        } else if (strength === 'Strong') {
+            strengthIndicator.classList.add('strength-strong');
+        }
+    }
+
+// Show Password feature
     showPasswordCheckbox.addEventListener('change', function () {
         const type = showPasswordCheckbox.checked ? 'text' : 'password';
         passwordInput.type = type; // Toggle password visibility
