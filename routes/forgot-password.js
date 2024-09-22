@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
         // Send reset email
         sendPasswordResetEmail(user.email, token);
 
-        res.json({ message: 'Password reset email has been sent.' });
+        res.json({ message: 'Password reset email has been sent.', token });
     } catch (err) {
         console.error('Error processing password reset:', err);
         res.status(500).json({ message: 'Internal server error' });
