@@ -72,7 +72,7 @@ To set up the Expense Tracker Application locally, follow these steps:
     npm start
     ```
 
-7. **Access the Application**: Open a web browser and navigate to `http://localhost:3000`.
+7. **Access the Application**: Open a web browser and navigate to for example if using port 3000   navigate `http://localhost:3000`.
 
 ## Usage
 
@@ -84,14 +84,12 @@ To set up the Expense Tracker Application locally, follow these steps:
 6. **About Us**: Visit the 'About Us' section to learn more about the application.
 
 ## Future Enhancements
-
+- **Budgets**- implement a budgets sections
 - **Recurring Transactions**: Implement functionality to handle recurring expenses and income entries.
 - **Advanced Reporting**: Develop detailed reporting features for monthly and yearly spending analysis.
 - **Notifications**: Add features to notify users about budget limits and important financial reminders.
 - **Mobile App**: Create a mobile-friendly version for on-the-go expense tracking.
 
-## Contributing
 
-We welcome contributions! Please fork the repository and submit a pull request for any enhancements or bug fixes.
 
 
