@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('No token found in URL.');
     }
 
+   
     // Password strength indicator logic
     passwordField.addEventListener('input', () => {
         const strength = calculatePasswordStrength(passwordField.value);
-        strengthIndicator.textContent = strength;
+        strengthIndicator.textContent = `Password Strength: ${strength}`;
         updateStrengthIndicatorVisual(strength);
     });
 
@@ -42,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return strength;
     }
 
-
     // Update the visual appearance of the strength indicator
     function updateStrengthIndicatorVisual(strength) {
         strengthIndicator.className = ''; // Reset classes
@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
             strengthIndicator.classList.add('strength-strong');
         }
     }
-
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
