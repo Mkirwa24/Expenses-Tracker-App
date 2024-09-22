@@ -15,8 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Extract token from query string
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
+    
+    console.log('Extracted Token:', token);
+
     if (token) {
         tokenField.value = token; // Set the token in the hidden field
+        console.log('Token field set to:', tokenField.value);
+    } else {
+        console.error('No token found in URL.');
     }
 
     // Password strength indicator logic
